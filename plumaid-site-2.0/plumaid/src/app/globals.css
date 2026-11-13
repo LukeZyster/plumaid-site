@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --navy: #0f1b36;
+  --ink: #1a2434;
+  --ink-soft: #4d5c75;
+  --card: #edf4ff;
+  --white: #ffffff;
+  --muted: #f5f8ff;
+  --gold: #f7b955;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  color: var(--ink);
+  background: #f8fbff;
+}
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+.container { width: min(1100px, calc(100% - 2rem)); margin: 0 auto; }
+
+.hero { background: linear-gradient(180deg, #eff6ff 0%, #f5f8ff 100%); padding: 4rem 0 2rem; }
+.hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 2rem; align-items: center; }
+.hero h1 { font-size: clamp(2.5rem, 4vw, 4rem); line-height: 1.05; margin: 0 0 1rem; color: var(--navy); }
+.lead { color: var(--ink-soft); font-size: 1.08rem; line-height: 1.7; }
+.hero-badges { list-style: none; padding: 0; margin: 1.5rem 0 0; display: flex; flex-wrap: wrap; gap: 0.75rem; color: var(--navy); font-weight: 600; }
+.hero-badges li { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(255,255,255,0.8); border: 1px solid rgba(21, 37, 61, 0.08); border-radius: 999px; padding: 0.5rem 0.8rem; }
+
+.section { padding: 4rem 0; }
+.section--white { background: white; }
+.section--navy { background: #0f1b36; color: white; }
+.section-head { display: flex; justify-content: space-between; align-items: end; gap: 1rem; margin-bottom: 2rem; }
+.section-head h2 { margin: 0; font-size: clamp(2rem, 3vw, 2.6rem); }
+.section-head p { margin: 0; max-width: 600px; color: inherit; opacity: 0.8; }
+
+.svc-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+.svc { background: white; border: 1px solid rgba(17,34,60,0.08); border-radius: 20px; padding: 1.25rem; display: block; box-shadow: 0 12px 30px rgba(16,27,42,0.05); }
+.svc-icon { display: inline-flex; width: 52px; height: 52px; border-radius: 16px; background: #edf4ff; color: var(--navy); align-items: center; justify-content: center; }
+.svc h3 { margin: 1rem 0 0.5rem; }
+.svc p { margin: 0; color: var(--ink-soft); }
+.svc-go { display: inline-flex; align-items: center; gap: 0.35rem; margin-top: 1rem; color: var(--navy); font-weight: 700; }
+
+.review-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+.review { background: #f5f8ff; border: 1px solid rgba(17,34,60,0.06); border-radius: 20px; padding: 1.2rem; }
+.review blockquote { margin: 0.75rem 0; font-size: 1rem; line-height: 1.6; color: var(--ink); }
+
+.cta-band { background: linear-gradient(135deg, #0f1b36, #1d3f75); color: white; padding: 4rem 0; }
+.cta-inner { display: flex; justify-content: space-between; align-items: center; gap: 2rem; }
+.btn-row { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1rem; }
+.btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.1rem; border-radius: 999px; font-weight: 700; }
+.btn--navy { background: #dfeeff; color: var(--navy); }
+.btn--ghost { background: transparent; border: 1px solid rgba(255,255,255,0.25); }
+.btn--whatsapp { background: #25d366; color: #0f1b36; }
+.btn--ghost-dark { background: transparent; border: 1px solid rgba(17,34,60,0.18); color: var(--navy); }
+
+.mascot { display: block; }
+.gallery { display: grid; grid-template-columns: repeat(2, minmax(120px, 1fr)); gap: 0.75rem; }
+.ph { background: #edf4ff; border-radius: 18px; overflow: hidden; min-height: 140px; }
+.ph img { width: 100%; height: 100%; object-fit: cover; }
+.ph-empty { display: grid; place-items: center; height: 100%; min-height: 140px; text-align: center; color: var(--navy); }
+
+.rating-summary { display: flex; align-items: center; gap: 1rem; }
+.rating-big { font-size: clamp(2rem, 3.2vw, 3rem); font-weight: 800; color: var(--navy); }
+.empty { background: #f5f8ff; border-radius: 20px; padding: 2rem; text-align: center; }
+
+@media (max-width: 800px) {
+  .hero-grid, .cta-inner, .section-head { grid-template-columns: 1fr; display: grid; }
+  .section-head { align-items: flex-start; }
+}

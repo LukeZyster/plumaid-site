@@ -1,0 +1,14 @@
+type IconProps = { size?: number; className?: string };
+
+export function IconShield({ size = 18, className }: IconProps) {
+  return <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M12 3l7 3v5c0 4.4-2.7 8.2-7 10-4.3-1.8-7-5.6-7-10V6l7-3Z" /><path d="M9 12l2 2 4-4" /></svg>;
+}
+export function IconWhatsApp({ size = 18, className }: IconProps) {
+  return <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="currentColor"><path d="M20.5 3.5A11.3 11.3 0 0 0 3.7 17L2.5 21.5l4.7-1.2A11.3 11.3 0 1 0 20.5 3.5Zm-6.8 3.1c.5 0 1.1.1 1.5.7.3.5.8 1.7.8 1.9s.1.4-.3.7c-.2.2-.5.5-.8.9-.3.3-.4.6-.1.9.3.4.7.9 1.2 1.4.8.8 1.4 1.1 1.8 1.4.5.3.7.2.9-.1.2-.3.8-1 .9-1.3.1-.2.3-.2.5-.2h.4c.2 0 .5 0 .8.4.3.3 1 .9 1.3 1.1.3.2.5.3.6.4.1.2.1.5-.1.8-.6.7-1.6 1.2-2.6 1.3-1.1.1-2.1-.1-3.4-.7-2.3-1.2-4-3.6-4.5-5.6-.2-.8-.1-1.7.3-2.5.3-.5.8-.8 1.3-.8Z" /></svg>;
+}
+export function IconArrow({ size = 16, className }: IconProps) { return <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14" /><path d="m13 5 7 7-7 7" /></svg>; }
+export function IconPhone({ size = 16, className }: IconProps) { return <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.7-3.5 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2 5.2 2 2 0 0 1 4 3h3a2 2 0 0 1 2 1.7l.5 3.2a2 2 0 0 1-.6 1.8L7.4 9.7a16 16 0 0 0 6.9 6.9l.9-.9a2 2 0 0 1 1.8-.6l3.2.5A2 2 0 0 1 22 16.9Z" /></svg>; }
+export function IconGeyser({ size = 18, className }: IconProps) { return <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M8 3h8v6c0 2.5-1.8 5.1-4 6.2V20a2 2 0 0 1-4 0v-4.8C7.1 14.2 6 11.6 6 9V3h2Z" /><path d="M12 10v5" /></svg>; }
+export function IconHome({ size = 18, className }: IconProps) { return <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M4 10.5 12 4l8 6.5" /><path d="M6 9.5V20h12V9.5" /></svg>; }
+export function IconPipe({ size = 18, className }: IconProps) { return <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M4 7h8v10h8" /><path d="M4 17h8" /></svg>; }
+export function IconWrench({ size = 18, className }: IconProps) { return <svg width={size} height={size} viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M15.9 6.1a4.5 4.5 0 0 0-6.4 6.4L4 18l2 2 5.5-5.5a4.5 4.5 0 0 0 6.4-6.4Z" /><path d="m14 10 2-2" /></svg>; }
