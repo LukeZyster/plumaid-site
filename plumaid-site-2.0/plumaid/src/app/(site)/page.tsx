@@ -4,6 +4,9 @@ import { Mascot } from "@/components/Brand";
 import { IconArrow, IconGeyser, IconHome, IconPhone, IconPipe, IconShield, IconWhatsApp, IconWrench } from "@/components/Icons";
 import BookingCalendar from "@/components/BookingCalendar";
 import QuickBook from "@/components/QuickBook";
+import Deco from "@/components/Deco";
+import LeakFixScene from "@/components/LeakFixScene";
+import ReviewCard from "@/components/ReviewCard";
 import Stars from "@/components/Stars";
 import VideoReel from "@/components/VideoReel";
 import { serviceCards, site, whatsappLink } from "@/content/site";
@@ -56,17 +59,27 @@ export default async function Home() {
       <section className="hero">
         <div className="container hero-grid">
           <div>
-            <h1>A plumber you can book in a minute.</h1>
+            <h1 className="hero-title">
+              A plumber you can book <em>in a minute.</em>
+            </h1>
             <p className="lead">
               PIRB-registered plumbing for homes and small businesses in Wellington, Paarl and surrounds. Pick a day on our
               calendar and your plumber confirms it by email.
             </p>
             <QuickBook />
-            <ul className="hero-badges">
-              <li><IconShield /> PIRB registered</li>
-              <li><IconWhatsApp size={20} /> WhatsApp welcome</li>
-              <li>{site.tagline}</li>
+            <ul className="hero-trust">
+              <li>
+                <span className="trust-ico trust-ico--pirb"><IconShield size={22} /></span>
+                <span><strong>PIRB registered</strong><small>Plumbing Industry Registration Board</small></span>
+              </li>
+              <li>
+                <span className="trust-ico trust-ico--wa"><IconWhatsApp size={22} /></span>
+                <span><strong>WhatsApp welcome</strong><small>Send us a photo of the problem</small></span>
+              </li>
             </ul>
+            <p className="hero-tagline" aria-label={site.tagline}>
+              <span>Fast</span><i aria-hidden="true" /><span>Reliable</span><i aria-hidden="true" /><span>Professional</span>
+            </p>
           </div>
           <HeroArt media={hero ? { url: hero.public_url, kind: hero.kind, title: hero.title } : null} />
         </div>
@@ -75,6 +88,7 @@ export default async function Home() {
 
       {/* ─── Services ─── */}
       <section className="section" id="services">
+        <Deco preset="services" />
         <div className="container">
           <div className="section-head">
             <h2>What we fix</h2>
@@ -99,6 +113,7 @@ export default async function Home() {
       {/* ─── Booking calendar ─── */}
       {services.length > 0 && (
         <section className="section section--white" id="calendar">
+        <Deco preset="calendar" />
           <div className="container">
             <div className="section-head">
               <h2>When suits you?</h2>
@@ -114,6 +129,7 @@ export default async function Home() {
 
       {/* ─── Video reel ─── */}
       <section className="section" id="jobs">
+        <Deco preset="jobs" />
         <div className="container">
           <div className="section-head">
             <h2>Recent jobs</h2>
@@ -125,6 +141,7 @@ export default async function Home() {
 
       {/* ─── How booking works ─── */}
       <section className="section section--navy" id="how">
+        <LeakFixScene />
         <div className="container">
           <div className="section-head">
             <h2>Booking takes four steps</h2>
@@ -143,6 +160,7 @@ export default async function Home() {
 
       {/* ─── Team & business photos ─── */}
       <section className="section" id="team">
+        <Deco preset="team" />
         <div className="container team-row">
           <div>
             <h2>The people behind the pipes</h2>
@@ -175,6 +193,7 @@ export default async function Home() {
 
       {/* ─── Reviews ─── */}
       <section className="section section--white" id="reviews">
+        <Deco preset="reviews" />
         <div className="container">
           <div className="section-head">
             <h2>What customers say</h2>
@@ -184,23 +203,19 @@ export default async function Home() {
                 <div>
                   <Stars rating={stats.average} size={26} />
                   <div style={{ color: "var(--ink-soft)", fontWeight: 600 }}>
-                    from {stats.count} verified {stats.count === 1 ? "review" : "reviews"}
+                    from {stats.count} {stats.count === 1 ? "review" : "reviews"}
                   </div>
                 </div>
               </div>
             ) : (
-              <p>Every review comes from a customer whose job we have completed.</p>
+              <p>Real words from real customers.</p>
             )}
           </div>
           {reviews.length > 0 ? (
             <>
               <div className="review-grid review-grid--3">
                 {reviews.map((r) => (
-                  <figure className="review" key={r.id} style={{ margin: 0 }}>
-                    <Stars rating={r.rating} />
-                    <blockquote>{r.comment || "Great service."}</blockquote>
-                    <figcaption style={{ fontWeight: 700, color: "var(--navy)" }}>{r.reviewer_name}</figcaption>
-                  </figure>
+                  <ReviewCard key={r.id} r={r} showDate={false} />
                 ))}
               </div>
               <p style={{ marginTop: 28 }}>

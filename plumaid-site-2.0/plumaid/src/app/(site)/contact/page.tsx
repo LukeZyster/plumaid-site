@@ -3,6 +3,7 @@ import Link from "next/link";
 import ContactForm from "@/components/ContactForm";
 import { IconMail, IconPhone, IconPin, IconWhatsApp } from "@/components/Icons";
 import { site, whatsappLink } from "@/content/site";
+import Deco from "@/components/Deco";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -13,6 +14,7 @@ export default function ContactPage() {
   return (
     <>
       <section className="page-hero">
+        <Deco preset="page4" />
         <div className="container">
           <h1>Contact us</h1>
           <p className="lead">Call, WhatsApp or send a message. For a set time, booking online is quickest.</p>

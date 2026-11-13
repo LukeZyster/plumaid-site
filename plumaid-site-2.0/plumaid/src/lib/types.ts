@@ -47,9 +47,16 @@ export type Appointment = {
   services?: Pick<Service, "name" | "duration_minutes"> | null;
 };
 
+export type ReviewSource = "website" | "whatsapp" | "facebook" | "google" | "sms" | "email" | "in_person" | "other";
+
 export type Review = {
   id: string;
-  appointment_id: string;
+  appointment_id: string | null;
+  source?: ReviewSource;
+  anonymous?: boolean;
+  screenshot_url?: string | null;
+  storage_path?: string | null;
+  review_date?: string | null;
   reviewer_name: string;
   rating: number;
   comment: string;

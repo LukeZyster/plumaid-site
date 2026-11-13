@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { mission } from "@/content/story";
+import Deco from "@/components/Deco";
 
 export const metadata: Metadata = {
   title: "Our mission",
@@ -11,6 +12,7 @@ export default function MissionPage() {
   return (
     <>
       <section className="page-hero">
+        <Deco preset="page3" />
         <div className="container">
           <h1>Our mission</h1>
           <p className="lead">{mission.intro}</p>

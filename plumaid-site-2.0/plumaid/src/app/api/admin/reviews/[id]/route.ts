@@ -16,3 +16,18 @@ export async function PATCH(req: NextRequest, ctx: { params: Promise<{ id: strin
   revalidatePath("/admin");
   return json({ ok: true });
 }
+
+/** Delete a review the plumber added himself (and its screenshot). */
+export async function DELETE(_req: NextRequest, ctx: { params: Promise<{ id: string }> }) {
+  if (!(await getAdmin())) return json({ error: "unauthorized" }, 401);
+  const { id } = await ctx.params;
+  const { data: r } = await db().from("reviews").select("appointment_id, storage_path").eq("id", id).maybeSingle();
+  if (!r) return json({ error: "not_found" }, 404);
+  if (r.appointment_id) return json({ error: "website_review" }, 400); // reviews from the website can only be hidden
+  if (r.storage_path) await db().storage.from("media").remove([r.storage_path]);
+  await db().from("reviews").delete().eq("id", id);
+  revalidatePath("/reviews");
+  revalidatePath("/");
+  revalidatePath("/admin/reviews");
+  return json({ ok: true });
+}

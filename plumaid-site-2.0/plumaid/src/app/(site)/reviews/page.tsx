@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Mascot } from "@/components/Brand";
+import ReviewCard from "@/components/ReviewCard";
 import Stars from "@/components/Stars";
 import { getReviewStats, getReviews } from "@/lib/data";
-import { formatDate } from "@/lib/time";
+import Deco from "@/components/Deco";
 
 export const metadata: Metadata = {
   title: "Customer reviews",
-  description: "Read reviews from PlumAid customers in Wellington and Paarl. Every review comes from a completed job.",
+  description: "Read reviews from PlumAid customers in Wellington and Paarl. Real reviews from PlumAid customers.",
 };
 export const revalidate = 60;
 
@@ -17,9 +18,10 @@ export default async function ReviewsPage() {
   return (
     <>
       <section className="page-hero">
+        <Deco preset="page1" />
         <div className="container">
           <h1>Customer reviews</h1>
-          <p className="lead">Every review here was written by a customer whose job we completed.</p>
+          <p className="lead">Real words from real customers around Wellington and Paarl.</p>
         </div>
       </section>
       <div className="pipe pipe--thin" aria-hidden="true" />
@@ -42,22 +44,13 @@ export default async function ReviewsPage() {
             <div className="empty">
               <Mascot size={120} className="mascot" />
               <h2 style={{ fontSize: "1.6rem" }}>No reviews yet</h2>
-              <p>After each completed job we email the customer a link to review it. They will appear here.</p>
+              <p>Reviews from our customers will appear here.</p>
               <Link href="/appointments" className="btn btn--primary">Book a plumber</Link>
             </div>
           ) : (
             <div className="review-grid">
               {reviews.map((r) => (
-                <figure className="review" key={r.id} style={{ margin: 0 }}>
-                  <Stars rating={r.rating} />
-                  <blockquote>{r.comment || "Great service."}</blockquote>
-                  <figcaption style={{ display: "flex", justifyContent: "space-between", gap: 8, fontWeight: 700, color: "var(--navy)" }}>
-                    <span>{r.reviewer_name}</span>
-                    <small style={{ fontWeight: 500, color: "var(--ink-soft)" }}>
-                      {formatDate(r.created_at, { weekday: undefined, day: "numeric", month: "short", year: "numeric" })}
-                    </small>
-                  </figcaption>
-                </figure>
+                <ReviewCard key={r.id} r={r} />
               ))}
             </div>
           )}

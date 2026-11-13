@@ -16,6 +16,8 @@ export function db(): SupabaseClient {
   }
   client ??= createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!, {
     auth: { persistSession: false, autoRefreshToken: false },
+    // Fail fast instead of making visitors wait if Supabase is slow or misconfigured.
+    global: { fetch: (input, init) => fetch(input, { ...init, signal: init?.signal ?? AbortSignal.timeout(8000) }) },
   });
   return client;
 }

@@ -96,7 +96,7 @@ const waNumber = (phone: string | null) => {
 };
 
 const noteBox = (label: string, note: string) =>
-  `<div style="border-left:4px solid ${BRAND.orange};background:#fff7f1;border-radius:8px;padding:12px 16px;margin:14px 0;">
+  `<div style="border:1px solid #ffd5b8;background:#fff3ea;border-radius:12px;padding:12px 16px;margin:14px 0;">
 <div style="font-size:12px;letter-spacing:1px;text-transform:uppercase;color:${BRAND.muted};margin-bottom:4px;">${esc(label)}</div>
 <div style="font-size:15px;line-height:1.6;white-space:pre-wrap;">${esc(note)}</div></div>`;
 

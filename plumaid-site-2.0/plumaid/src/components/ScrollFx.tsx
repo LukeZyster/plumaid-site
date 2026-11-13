@@ -53,7 +53,7 @@ export default function ScrollFx() {
       const p = el.parentElement!;
       const i = counts.get(p) ?? 0;
       counts.set(p, i + 1);
-      el.style.setProperty("--rv-delay", `${Math.min(i, 6) * 90}ms`);
+      el.style.setProperty("--rv-delay", `${Math.min(i, 4) * 60}ms`);
       el.classList.add("rv");
     }
     const io = new IntersectionObserver(
@@ -65,7 +65,7 @@ export default function ScrollFx() {
           }
         }
       },
-      { rootMargin: "0px 0px -8% 0px", threshold: 0.08 },
+      { rootMargin: "0px 0px 20% 0px", threshold: 0 },
     );
     els.forEach((el) => io.observe(el));
     // Safety net: never leave anything hidden if the observer misses it.
@@ -76,7 +76,7 @@ export default function ScrollFx() {
     }, 1500);
     const onScrollReveal = () => {
       document.querySelectorAll(".rv:not(.rv-in)").forEach((el) => {
-        if (el.getBoundingClientRect().top < window.innerHeight * 0.95) el.classList.add("rv-in");
+        if (el.getBoundingClientRect().top < window.innerHeight * 1.2) el.classList.add("rv-in");
       });
     };
     window.addEventListener("scroll", onScrollReveal, { passive: true });

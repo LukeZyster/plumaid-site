@@ -3,7 +3,7 @@ import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { BOOKING } from "@/lib/config";
 import { getSlots } from "@/lib/availability";
-import { getAppointment, getServiceBySlug, json, newToken, siteUrl } from "@/lib/booking";
+import { getAppointment, getServiceBySlug, isRealService, json, newToken, siteUrl } from "@/lib/booking";
 import { sendPlumberRequest, sendRequestReceived } from "@/lib/email";
 import { hasSupabase, db } from "@/lib/supabase/admin";
 import { addMinutes } from "@/lib/time";
@@ -41,6 +41,7 @@ export async function POST(req: NextRequest) {
 
   const service = await getServiceBySlug(b.service);
   if (!service) return json({ error: "unknown_service" }, 400);
+  if (!isRealService(service)) return json({ error: "not_configured" }, 503);
 
   // The chosen time must be a real, free slot for that day/service.
   const slots = await getSlots(b.date, service.duration_minutes);

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Mascot } from "@/components/Brand";
 import { story } from "@/content/story";
+import Deco from "@/components/Deco";
 
 export const metadata: Metadata = {
   title: "Our story",
@@ -12,6 +13,7 @@ export default function HistoryPage() {
   return (
     <>
       <section className="page-hero">
+        <Deco preset="page2" />
         <div className="container">
           <h1>Our story</h1>
           <p className="lead">{story.headline}</p>

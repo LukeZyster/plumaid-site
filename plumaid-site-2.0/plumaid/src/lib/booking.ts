@@ -45,14 +45,28 @@ const FALLBACK_SERVICES: Service[] = [
   { id: "preview-4", slug: "general-assessment", name: "Not sure? General Assessment", description: "Describe the problem and we will come and take a look.", duration_minutes: 60, sort_order: 4, active: true },
 ];
 
+const fallback = (slug: string) => FALLBACK_SERVICES.find((s) => s.slug === slug) ?? null;
+
+/** True for a real database service (the preview fallbacks can't be booked). */
+export const isRealService = (s: Service | null) => Boolean(s && !s.id.startsWith("preview-"));
+
 export async function getServiceBySlug(slug: string): Promise<Service | null> {
-  if (!hasSupabase()) return FALLBACK_SERVICES.find((s) => s.slug === slug) ?? null;
-  const { data } = await db().from("services").select("*").eq("slug", slug).eq("active", true).maybeSingle();
+  if (!hasSupabase()) return fallback(slug);
+  const { data, error } = await db().from("services").select("*").eq("slug", slug).eq("active", true).maybeSingle();
+  if (error) {
+    // Database unreachable or keys wrong: keep the calendar visible, booking itself will report the problem.
+    console.error("[services] lookup failed:", error.message);
+    return fallback(slug);
+  }
   return (data as Service) ?? null;
 }
 
 export async function listServices(): Promise<Service[]> {
   if (!hasSupabase()) return FALLBACK_SERVICES;
-  const { data } = await db().from("services").select("*").eq("active", true).order("sort_order");
-  return (data as Service[]) ?? [];
+  const { data, error } = await db().from("services").select("*").eq("active", true).order("sort_order");
+  if (error || !data?.length) {
+    if (error) console.error("[services] list failed:", error.message);
+    return FALLBACK_SERVICES;
+  }
+  return data as Service[];
 }

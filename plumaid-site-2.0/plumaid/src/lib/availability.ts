@@ -33,7 +33,11 @@ async function loadBusy(from: Date, to: Date, now: Date): Promise<Busy[]> {
     .in("status", LIVE)
     .lt("start_at", to.toISOString())
     .gt("block_end", from.toISOString());
-  if (error) throw error;
+  if (error) {
+    // Never take the whole calendar down: log it and show opening hours only.
+    console.error("[availability] could not read bookings:", error.message);
+    return [];
+  }
   return (data ?? [])
     .filter((r) => !(r.status === "held" && r.hold_expires_at && new Date(r.hold_expires_at) < now))
     .filter((r) => !(r.status === "pending" && new Date(r.start_at) < now))
