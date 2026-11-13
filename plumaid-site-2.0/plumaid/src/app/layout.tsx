@@ -14,8 +14,9 @@ export const metadata: Metadata = {
     siteName: site.fullName,
     title: `${site.fullName} | Wellington & Paarl`,
     description: site.description,
+    images: [{ url: "/brand/logo.png", width: 660, height: 268, alt: site.fullName }],
   },
-  icons: { icon: "/brand/icon.svg" },
+  icons: { icon: "/brand/icon-square.png", apple: "/brand/icon-square.png" },
 };
 
 export const viewport: Viewport = { themeColor: "#0f1b36", width: "device-width", initialScale: 1 };

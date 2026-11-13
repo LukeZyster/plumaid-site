@@ -1,10 +1,12 @@
-export default function Stars({ rating, size = 18 }: { rating: number; size?: number }) {
-  const stars = Array.from({ length: 5 }, (_, i) => i < Math.round(rating));
+import { IconStar } from "./Icons";
+
+export default function Stars({ rating, size = 20 }: { rating: number; size?: number }) {
+  const r = Math.round(rating);
   return (
-    <div aria-label={`Rated ${rating} out of 5`} style={{ display: "flex", gap: 2, color: "#f7b955" }}>
-      {stars.map((filled, i) => (
-        <span key={i} style={{ fontSize: size, lineHeight: 1 }}>{filled ? "★" : "☆"}</span>
+    <span className="stars" role="img" aria-label={`${rating.toFixed(1).replace(".0", "")} out of 5 stars`}>
+      {[1, 2, 3, 4, 5].map((n) => (
+        <IconStar key={n} size={size} off={n > r} />
       ))}
-    </div>
+    </span>
   );
 }

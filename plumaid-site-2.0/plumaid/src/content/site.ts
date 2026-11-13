@@ -1,3 +1,7 @@
+/**
+ * Single source of truth for business details and page copy.
+ * Edit this file to change text across the whole site.
+ */
 export const site = {
   name: "PlumAid",
   fullName: "PlumAid Plumbing Solutions",
@@ -18,10 +22,30 @@ export const whatsappLink = (text = "Hi PlumAid, I need a plumber.") =>
   `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(text)}`;
 
 export const serviceCards = [
-  { key: "repairs", title: "Plumbing Maintenance & Repairs", blurb: "Leaks, dripping taps, faulty valves and general repairs.", slug: "maintenance-repairs" },
-  { key: "geyser", title: "Geysers & Water Systems", blurb: "Geyser-related plumbing and water supply problems.", slug: "geysers-water-systems" },
-  { key: "pipe", title: "Pipe Repairs & Replacements", blurb: "Copper piping, fittings and general installations.", slug: "pipe-repairs-replacements" },
-  { key: "home", title: "Residential & Small Commercial", blurb: "Quality workmanship you can trust, at home or at your business.", slug: "general-assessment" },
+  {
+    key: "repairs",
+    title: "Plumbing Maintenance & Repairs",
+    blurb: "Leaks, dripping taps, faulty valves and general repairs.",
+    slug: "maintenance-repairs",
+  },
+  {
+    key: "geyser",
+    title: "Geysers & Water Systems",
+    blurb: "Geyser-related plumbing and water supply problems.",
+    slug: "geysers-water-systems",
+  },
+  {
+    key: "pipe",
+    title: "Pipe Repairs & Replacements",
+    blurb: "Copper piping, fittings and general installations.",
+    slug: "pipe-repairs-replacements",
+  },
+  {
+    key: "home",
+    title: "Residential & Small Commercial",
+    blurb: "Quality workmanship you can trust, at home or at your business.",
+    slug: "general-assessment",
+  },
 ] as const;
 
 export const nav = [

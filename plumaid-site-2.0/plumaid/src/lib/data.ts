@@ -2,6 +2,8 @@ import "server-only";
 import { db, hasSupabase } from "./supabase/admin";
 import type { MediaItem, Review } from "./types";
 
+/** Public-page data helpers. They never throw: an unconfigured/empty database just shows friendly empty states. */
+
 export async function getMedia(kind?: "video" | "photo", category?: MediaItem["category"]): Promise<MediaItem[]> {
   if (!hasSupabase()) return [];
   try {
