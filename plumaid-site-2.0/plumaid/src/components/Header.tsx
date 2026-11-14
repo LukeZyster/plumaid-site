@@ -11,7 +11,7 @@ export default function Header() {
 
   useEffect(() => setOpen(false), [path]);
 
-  const items = nav.filter((n) => n.href !== "/appointments");
+  const items = nav.filter((n) => n.href !== "/appointments#book");
 
   return (
     <header className="site-header">
@@ -26,7 +26,7 @@ export default function Header() {
               {n.label}
             </Link>
           ))}
-          <Link href="/appointments" className="btn btn--primary btn--small" aria-current={path === "/appointments" ? "page" : undefined}>
+          <Link href="/appointments#book" className="btn btn--primary btn--small" aria-current={path === "/appointments" ? "page" : undefined}>
             Book a plumber
           </Link>
         </nav>
@@ -43,9 +43,9 @@ export default function Header() {
       </div>
       <nav id="mobile-nav" className={`mobile-nav ${open ? "open" : ""}`} aria-label="Mobile">
         {items.map((n) => (
-          <Link key={n.href} href={n.href} aria-current={path === n.href ? "page" : undefined}>{n.label}</Link>
+          <Link key={n.href} href={n.href} onClick={() => setOpen(false)} aria-current={path === n.href ? "page" : undefined}>{n.label}</Link>
         ))}
-        <Link href="/appointments" className="btn btn--primary">Book a plumber</Link>
+        <Link href="/appointments#book" className="btn btn--primary" onClick={() => setOpen(false)}>Book a plumber</Link>
       </nav>
     </header>
   );

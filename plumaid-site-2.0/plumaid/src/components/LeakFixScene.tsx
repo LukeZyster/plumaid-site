@@ -76,19 +76,35 @@ export default function LeakFixScene() {
           <circle cx="600" cy="118" r="5" fill="#5d6573" />
         </g>
 
-        {/* the wrench */}
+        {/* the pipe wrench (Stillson-style), jaws biting the pipe, red handle pointing up and away */}
         <g className="lf-wrench-move">
-          <g className="lf-wrench">
-            <rect x="592" y="18" width="18" height="96" rx="8" fill="#f26a1b" />
-            <rect x="596" y="40" width="10" height="44" rx="5" fill="#d9560c" />
-            <path d="M584 112 v-14 a10 10 0 0 1 10 -10 h14 a10 10 0 0 1 10 10 v14 h-9 v-8 h-16 v8z" fill="url(#lfSteel)" stroke="#5d6573" strokeWidth="2" />
+          <g transform="translate(600 148) rotate(66)">
+            <g className="lf-wrench">
+              {/* hook jaw shank (runs up beside the pipe into the housing) */}
+              <rect x="32" y="-92" width="12" height="138" rx="3" fill="url(#lfSteel)" stroke="#4b5260" strokeWidth="2" />
+              {/* hook jaw, below the pipe, teeth up */}
+              <path d="M-34 30 H44 V46 H-30 a4 4 0 0 1 -4 -4 Z" fill="url(#lfSteel)" stroke="#4b5260" strokeWidth="2" />
+              <path d="M-31 31 l4 -5 4 5 4 -5 4 5 4 -5 4 5 4 -5 4 5 4 -5 4 5 4 -5 4 5 4 -5 4 5" fill="none" stroke="#4b5260" strokeWidth="1.8" strokeLinejoin="round" />
+              {/* heel jaw, above the pipe, teeth down */}
+              <path d="M-34 -30 H30 V-46 H-30 a4 4 0 0 0 -4 4 Z" fill="url(#lfSteel)" stroke="#4b5260" strokeWidth="2" />
+              <path d="M-31 -31 l4 5 4 -5 4 5 4 -5 4 5 4 -5 4 5 4 -5 4 5 4 -5 4 5 4 -5 4 5 4 -5" fill="none" stroke="#4b5260" strokeWidth="1.8" strokeLinejoin="round" />
+              {/* housing */}
+              <path d="M-18 -44 V-104 a8 8 0 0 1 8 -8 H44 a8 8 0 0 1 8 8 V-44 Z" fill="#d8352a" stroke="#7d1d14" strokeWidth="2" />
+              {/* knurled adjusting nut, seen through the housing window */}
+              <rect x="24" y="-92" width="28" height="22" rx="4" fill="url(#lfSteel)" stroke="#4b5260" strokeWidth="2" />
+              <path d="M29 -91 v20 M34 -91 v20 M39 -91 v20 M44 -91 v20 M49 -91 v20" stroke="#6b7280" strokeWidth="1.4" />
+              {/* handle with I-beam groove and hanging hole */}
+              <path d="M2 -110 V-236 a12 12 0 0 1 24 0 V-110 Z" fill="#d8352a" stroke="#7d1d14" strokeWidth="2" />
+              <rect x="10" y="-218" width="8" height="96" rx="4" fill="#a8261d" />
+              <circle cx="14" cy="-230" r="5" fill="#0f1b36" />
+            </g>
           </g>
         </g>
 
         {/* done! */}
         <g className="lf-done">
-          <circle cx="672" cy="96" r="20" fill="#1fa855" />
-          <path d="M662 96 l7 7 13-14" fill="none" stroke="#fff" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
+          <circle cx="528" cy="96" r="20" fill="#1fa855" />
+          <path d="M518 96 l7 7 13-14" fill="none" stroke="#fff" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
         </g>
       </svg>
     </div>

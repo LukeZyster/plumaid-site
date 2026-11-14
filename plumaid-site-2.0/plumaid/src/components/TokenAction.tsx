@@ -60,7 +60,7 @@ export default function TokenAction({
     <div>
       {state === "error" && (
         <div className="alert alert--bad" role="alert" style={{ marginBottom: 16 }}>
-          {msg} <Link href="/appointments">Choose another day</Link>
+          {msg} <Link href="/appointments#book">Choose another day</Link>
         </div>
       )}
       <button className={`btn ${danger ? "btn--ghost-dark" : "btn--primary"}`} onClick={run} disabled={state === "busy"}>

@@ -58,7 +58,7 @@ export default function MissionPage() {
           <div>
             <h2>See it for yourself</h2>
             <p>Book a time that suits you and judge our work by the result.</p>
-            <Link href="/appointments" className="btn btn--navy">Book a plumber</Link>
+            <Link href="/appointments#book" className="btn btn--navy">Book a plumber</Link>
           </div>
         </div>
       </section>

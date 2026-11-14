@@ -45,7 +45,7 @@ export default async function ReviewsPage() {
               <Mascot size={120} className="mascot" />
               <h2 style={{ fontSize: "1.6rem" }}>No reviews yet</h2>
               <p>Reviews from our customers will appear here.</p>
-              <Link href="/appointments" className="btn btn--primary">Book a plumber</Link>
+              <Link href="/appointments#book" className="btn btn--primary">Book a plumber</Link>
             </div>
           ) : (
             <div className="review-grid">

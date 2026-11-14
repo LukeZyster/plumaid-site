@@ -14,7 +14,7 @@ export default function QuickBook() {
       className="quickbook"
       onSubmit={(e) => {
         e.preventDefault();
-        router.push(slug ? `/appointments?service=${slug}` : "/appointments");
+        router.push(slug ? `/appointments?service=${slug}#book` : "/appointments#book");
       }}
     >
       <label htmlFor="qb-service">What do you need help with?</label>

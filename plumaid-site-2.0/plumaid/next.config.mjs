@@ -8,6 +8,10 @@ const nextConfig = {
   images: {
     remotePatterns: [{ protocol: "https", hostname: supabaseHost }],
   },
+  // The contact page now lives on the booking page.
+  async redirects() {
+    return [{ source: "/contact", destination: "/appointments#contact", permanent: true }];
+  },
   async headers() {
     return [
       {

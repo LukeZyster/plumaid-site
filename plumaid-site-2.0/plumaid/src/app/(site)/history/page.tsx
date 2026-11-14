@@ -27,7 +27,7 @@ export default function HistoryPage() {
             <p className="lead" style={{ color: "var(--navy)", fontWeight: 600 }}>{story.intro}</p>
             {story.body.map((p) => <p key={p}>{p}</p>)}
             <p style={{ marginTop: 28 }}>
-              <Link href="/appointments" className="btn btn--primary">Book a plumber</Link>
+              <Link href="/appointments#book" className="btn btn--primary">Book a plumber</Link>
             </p>
           </div>
           <div style={{ display: "grid", placeItems: "center", padding: 24 }}>

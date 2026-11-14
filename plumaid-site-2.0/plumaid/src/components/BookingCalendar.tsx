@@ -67,19 +67,46 @@ export default function BookingCalendar({
   const [hoverDate, setHoverDate] = useState<string | null>(null);
   const [service, setService] = useState(services.find((s) => s.slug === initialService)?.slug ?? services[0]?.slug ?? "");
 
-  const loadMonth = useCallback(async () => {
-    setDays(null);
-    setLoadErr(false);
-    try {
-      const r = await fetch(`/api/availability/month?month=${month}&service=${service}`, { cache: "no-store" });
-      const j = await r.json();
-      if (!r.ok) throw new Error(j.error);
-      setDays(j.days);
-    } catch {
-      setLoadErr(true);
-      setDays([]);
-    }
-  }, [month, service]);
+  // Months already fetched (keyed by month + job length), so flicking between months is instant.
+  const cache = useRef(new Map<string, MonthDay[]>());
+  const duration = services.find((s) => s.slug === service)?.duration ?? 60;
+
+  const fetchMonth = useCallback(
+    async (m: string, fresh = false): Promise<MonthDay[]> => {
+      const key = `${m}|${duration}`;
+      const hit = cache.current.get(key);
+      if (hit && !fresh) return hit;
+      const ctrl = new AbortController();
+      const t = setTimeout(() => ctrl.abort(), 9000);
+      try {
+        const r = await fetch(`/api/availability/month?month=${m}&duration=${duration}${fresh ? `&t=${Date.now()}` : ""}`, { signal: ctrl.signal, cache: fresh ? "no-store" : "default" });
+        const j = await r.json();
+        if (!r.ok) throw new Error(j.error);
+        cache.current.set(key, j.days);
+        return j.days;
+      } finally {
+        clearTimeout(t);
+      }
+    },
+    [duration],
+  );
+
+  const loadMonth = useCallback(
+    async (fresh = false) => {
+      const key = `${month}|${duration}`;
+      setDays(fresh ? null : cache.current.get(key) ?? null);
+      setLoadErr(false);
+      try {
+        setDays(await fetchMonth(month, fresh));
+        // Warm up the next month in the background so the arrow feels instant.
+        fetchMonth(shiftMonth(month, 1)).catch(() => {});
+      } catch {
+        setLoadErr(true);
+        setDays([]);
+      }
+    },
+    [month, duration, fetchMonth],
+  );
 
   useEffect(() => {
     loadMonth();
@@ -132,7 +159,7 @@ export default function BookingCalendar({
 
         {loadErr && (
           <div className="alert alert--bad" style={{ marginTop: 14 }}>
-            Couldn&apos;t load the calendar. <button type="button" className="linkish" onClick={loadMonth}>Try again</button>
+            Couldn&apos;t load the calendar. <button type="button" className="linkish" onClick={() => loadMonth(true)}>Try again</button>
           </div>
         )}
 
@@ -183,7 +210,7 @@ export default function BookingCalendar({
           setService={setService}
           onClose={(sent) => {
             setOpenDate(null);
-            if (sent) loadMonth();
+            if (sent) loadMonth(true);
           }}
         />
       )}

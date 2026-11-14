@@ -1,7 +1,8 @@
 import Link from "next/link";
+import { Check } from "lucide-react";
 import HeroArt from "@/components/HeroArt";
 import { Mascot } from "@/components/Brand";
-import { IconArrow, IconGeyser, IconHome, IconPhone, IconPipe, IconShield, IconWhatsApp, IconWrench } from "@/components/Icons";
+import { IconArrow, IconGeyser, IconHome, IconPhone, IconPipe, IconWhatsApp, IconWrench } from "@/components/Icons";
 import BookingCalendar from "@/components/BookingCalendar";
 import QuickBook from "@/components/QuickBook";
 import Deco from "@/components/Deco";
@@ -67,14 +68,14 @@ export default async function Home() {
               calendar and your plumber confirms it by email.
             </p>
             <QuickBook />
-            <ul className="hero-trust">
+            <ul className="hero-facts">
               <li>
-                <span className="trust-ico trust-ico--pirb"><IconShield size={22} /></span>
-                <span><strong>PIRB registered</strong><small>Plumbing Industry Registration Board</small></span>
+                <Check size={18} strokeWidth={3} aria-hidden="true" /> Registered with the PIRB
               </li>
               <li>
-                <span className="trust-ico trust-ico--wa"><IconWhatsApp size={22} /></span>
-                <span><strong>WhatsApp welcome</strong><small>Send us a photo of the problem</small></span>
+                <a href={whatsappLink("Hi PlumAid, here's a photo of the problem:")} target="_blank" rel="noopener noreferrer">
+                  <IconWhatsApp size={18} /> WhatsApp us a photo of the problem
+                </a>
               </li>
             </ul>
             <p className="hero-tagline" aria-label={site.tagline}>
@@ -98,7 +99,7 @@ export default async function Home() {
             {serviceCards.map((s) => {
               const Icon = icons[s.key];
               return (
-                <Link key={s.key} href={`/appointments?service=${s.slug}`} className="svc">
+                <Link key={s.key} href={`/appointments?service=${s.slug}#book`} className="svc">
                   <span className="svc-icon"><Icon size={30} /></span>
                   <h3>{s.title}</h3>
                   <p>{s.blurb}</p>
@@ -240,7 +241,7 @@ export default async function Home() {
             <h2>Water where it should not be?</h2>
             <p>Book online in a minute, or call us and we will do our best to fit you in.</p>
             <div className="btn-row">
-              <Link href="/appointments" className="btn btn--navy">Book a plumber</Link>
+              <Link href="/appointments#book" className="btn btn--navy">Book a plumber</Link>
               <a href={`tel:${site.phoneTel}`} className="btn btn--ghost"><IconPhone size={20} /> {site.phoneDisplay}</a>
               <a href={whatsappLink()} className="btn btn--whatsapp" target="_blank" rel="noopener noreferrer">
                 <IconWhatsApp size={20} /> WhatsApp

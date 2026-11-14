@@ -50,9 +50,8 @@ export const serviceCards = [
 
 export const nav = [
   { href: "/", label: "Home" },
-  { href: "/appointments", label: "Book" },
+  { href: "/appointments#book", label: "Book a plumber" },
   { href: "/reviews", label: "Reviews" },
   { href: "/history", label: "Our Story" },
   { href: "/mission", label: "Mission" },
-  { href: "/contact", label: "Contact" },
 ];

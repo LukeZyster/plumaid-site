@@ -27,12 +27,12 @@ export default async function CancelPage({ searchParams }: { searchParams: Promi
             <>
               <h1 style={{ fontSize: "2rem" }}>This request was declined</h1>
               <p>There is nothing to cancel. You are welcome to pick another day.</p>
-              <Link href="/appointments" className="btn btn--primary">Choose another day</Link>
+              <Link href="/appointments#book" className="btn btn--primary">Choose another day</Link>
             </>
           ) : a.status === "cancelled" ? (
             <>
               <h1 style={{ fontSize: "2rem" }}>Already cancelled</h1>
-              <Link href="/appointments" className="btn btn--primary">Book a new time</Link>
+              <Link href="/appointments#book" className="btn btn--primary">Book a new time</Link>
             </>
           ) : !cancellable ? (
             <>

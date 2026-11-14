@@ -1271,11 +1271,11 @@ h3 { font-weight: 700; letter-spacing: 0.005em; font-size: clamp(1.3rem, 1.1rem 
   62% { transform: translate(0, 0); opacity: 1; }
   74%, 100% { transform: translate(-720px, -40px); opacity: 0; }
 }
-.lf-wrench { transform-box: fill-box; transform-origin: 50% 96%; animation: lf-turn 12s ease-in-out infinite; }
+.lf-wrench { transform-box: view-box; transform-origin: 0 0; animation: lf-turn 12s ease-in-out infinite; }
 @keyframes lf-turn {
   0%, 38% { transform: rotate(0); }
-  42% { transform: rotate(-26deg); } 46% { transform: rotate(10deg); }
-  50% { transform: rotate(-26deg); } 54% { transform: rotate(10deg); }
+  42% { transform: rotate(-18deg); } 46% { transform: rotate(6deg); }
+  50% { transform: rotate(-18deg); } 54% { transform: rotate(6deg); }
   58%, 100% { transform: rotate(0); }
 }
 .lf-done { transform-box: fill-box; transform-origin: center; animation: lf-done 12s ease-out infinite; }
@@ -1284,3 +1284,51 @@ h3 { font-weight: 700; letter-spacing: 0.005em; font-size: clamp(1.3rem, 1.1rem 
   .lf-leak, .lf-spray, .lf-drip, .lf-puddle, .lf-clamp, .lf-wrench-move, .lf-wrench, .lf-done { animation: none; }
   .lf-leak, .lf-wrench-move { opacity: 0; }
 }
+
+/* ═══════════ Hero facts (plain, replaces the badge chips) ═══════════ */
+.hero-trust { display: none; }
+.hero-facts {
+  list-style: none; padding: 0; margin: 24px 0 0; display: flex; flex-wrap: wrap; gap: 8px 26px;
+  color: #dce6f7; font-size: 1rem; font-weight: 600;
+  animation: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) 0.36s both;
+}
+.hero-facts li { display: flex; align-items: center; gap: 8px; }
+.hero-facts svg { flex: none; }
+.hero-facts li:first-child svg { color: var(--orange); }
+.hero-facts a { display: inline-flex; align-items: center; gap: 8px; color: inherit; text-decoration: underline; text-decoration-color: rgba(255, 255, 255, 0.3); text-underline-offset: 4px; }
+.hero-facts a svg { color: #34d27a; }
+.hero-facts a:hover { color: #fff; text-decoration-color: #34d27a; }
+@media (prefers-reduced-motion: reduce) { .hero-facts { animation: none; } }
+
+/* ═══════════ Contact + booking on one page ═══════════ */
+.contact-sec { padding-bottom: clamp(24px, 4vw, 48px); }
+.contact-email { overflow-wrap: anywhere; }
+.book-sec { padding-top: clamp(32px, 5vw, 56px); border-top: 1px solid var(--line, #e3e9f3); scroll-margin-top: 80px; }
+#contact { scroll-margin-top: 80px; }
+.book-sec .sec-head { margin-bottom: 24px; }
+.book-sec .sec-head h2 { margin: 0 0 6px; }
+
+/* ═══════════ Mobile polish ═══════════ */
+@media (max-width: 639px) {
+  /* footer: links and contact side by side, hours full width, room for the WhatsApp button */
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px 18px; grid-template-areas: "brand brand" "explore touch" "hours hours"; }
+  .footer-grid > :nth-child(1) { grid-area: brand; }
+  .footer-grid > :nth-child(2) { grid-area: explore; }
+  .footer-grid > :nth-child(3) { grid-area: hours; }
+  .footer-grid > :nth-child(4) { grid-area: touch; min-width: 0; }
+  .footer-grid > :nth-child(4) a { overflow-wrap: anywhere; }
+  .footer-bottom { padding-bottom: 92px; }
+  /* doodles: smaller and quieter so they never sit on top of text */
+  .deco-i { opacity: 0.55; }
+  /* contact list + form */
+  .contact-list a, .contact-list li > div { padding: 14px 16px; gap: 14px; }
+  .contact-sec .card { padding: 22px 18px; }
+  .contact-sec .btn { width: 100%; justify-content: center; }
+  /* calendar */
+  .bcal-card { padding: 14px 10px; }
+  .bcal-grid { gap: 4px; }
+  .bcal-free { font-size: 0.62rem; }
+  .bcal-side { padding: 22px 18px; }
+  .hero-facts { gap: 10px; font-size: 0.95rem; }
+}
+.mobile-nav a.btn { display: flex; justify-content: center; margin-top: 18px; border-bottom: 0; color: #fff; }
